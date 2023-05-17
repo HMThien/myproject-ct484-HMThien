@@ -1,17 +1,16 @@
 import '../../models/product.dart';
 
 class ProductsManager {
-  final List<Product> _item = [    
-  ]
-    int get itemCount {
-      return _item.length;
-    }
+  final List<Product> _items = [];
+  int get itemCount {
+    return _items.length;
+  }
 
-    List<Product> get items{
-      return [..._item];
-    }
-    
-    List<Product> get favoriteItems{
-      return _item.where((item) => item.isFavorite).toList() ;
-    }
+  List<Product> get items {
+    return [..._items];
+  }
+
+  List<Product> get favoriteItems {
+    return _items.where((item) => item.isFavorite).toList();
+  }
 }
