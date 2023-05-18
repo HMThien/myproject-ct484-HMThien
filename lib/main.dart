@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/orders/orders_screen.dart';
 // ignore: unused_import
 import 'ui/products/product_detail_screen.dart';
 // ignore: unused_import
@@ -43,7 +44,8 @@ class MyApp extends StatelessWidget {
       ),*/ // P1 buoc 4
       home: const SafeArea(
         // child: UserProductsScreen(), phan 2 buoc 1
-        child: CartScreen(),
+        // child: CartScreen(), phần 2 buoc 2
+        child: OrdersScreen(),
       ),
     );
   }
