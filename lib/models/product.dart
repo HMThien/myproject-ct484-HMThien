@@ -5,6 +5,7 @@ class Product {
   final double price;
   final String imageUrl;
   final bool isFavorite;
+
   Product({
     this.id,
     required this.title,
