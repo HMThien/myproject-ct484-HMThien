@@ -16,12 +16,20 @@ class ProductGridTile extends StatelessWidget {
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         footer: buildGridFooterBar(context),
-        child: GestureDetector(
+        /*child: GestureDetector(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (ctx) => ProductDetailScreen(product),
               ),
+            );
+          },*/ //Phan 2 buoc 3
+
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              ProductDetailScreen.routeName,
+              arguments: product.id,
             );
           },
           child: Image.network(

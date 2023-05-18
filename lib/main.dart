@@ -42,11 +42,32 @@ class MyApp extends StatelessWidget {
           ProductsManager().items[0],*/ //Khuc sau Phần 1 buoc 2
         child: ProductsOverviewScreen(),
       ),*/ // P1 buoc 4
-      home: const SafeArea(
+      /*home: const SafeArea(
         // child: UserProductsScreen(), phan 2 buoc 1
         // child: CartScreen(), phần 2 buoc 2
-        child: OrdersScreen(),
-      ),
+        child: OrdersScreen(),*/ //Phan 2 buoc 3
+
+      home: const ProductsOverviewScreen(),
+      routes: {
+        CartScreen.routeName: (ctx) => const CartScreen(),
+        OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+        UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
+      },
+
+      onGenerateRoute: (settings) {
+        if (settings.name == ProductDetailScreen.routeName) {
+          final productId = settings.arguments as String;
+          return MaterialPageRoute(
+            builder: (ctx) {
+              return ProductDetailScreen(
+                ProductsManager().findById(productId)!,
+              );
+            },
+          );
+        }
+
+        return null;
+      },
     );
   }
 }
