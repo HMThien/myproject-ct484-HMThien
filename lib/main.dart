@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'ui/products/poduct_detail_screen.dart';
-import 'ui/products/products_manager.dart';
+// ignore: unused_import
+import 'ui/products/product_detail_screen.dart';
+// ignore: unused_import
+import '/ui/products/product_manager.dart';
 import 'ui/products/product_overview_screen.dart';
 
 void main() {
@@ -14,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyShop',
-      debugShowCheckedModeBanner: false,
+      //debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Lato',
         colorScheme: ColorScheme.fromSwatch(

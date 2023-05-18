@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'products_grid.dart';
+import 'product_grid.dart';
 
-enum FilterOptions { favorite, all }
+enum FilterOptions { favorites, all }
 
 class ProductsOverviewScreen extends StatefulWidget {
   const ProductsOverviewScreen({super.key});
@@ -42,7 +42,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return PopupMenuButton(
       onSelected: (FilterOptions selectedValue) {
         setState(() {
-          if (selectedValue == FilterOptions.favorite) {
+          if (selectedValue == FilterOptions.favorites) {
             _showOnlyFavorites = true;
           } else {
             _showOnlyFavorites = false;
@@ -54,7 +54,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       ),
       itemBuilder: (ctx) => [
         const PopupMenuItem(
-          value: FilterOptions.favorite,
+          value: FilterOptions.favorites,
           child: Text('Only Favorites'),
         ),
         const PopupMenuItem(
