@@ -1,8 +1,5 @@
-import 'dart:ffi';
-
 import '../../models/product.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 
 class ProductsManager with ChangeNotifier {
   final List<Product> _items = [
