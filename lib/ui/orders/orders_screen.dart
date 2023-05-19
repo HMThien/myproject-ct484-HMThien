@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'order_item_card.dart';
 import 'order_manager.dart';
@@ -10,7 +11,7 @@ class OrdersScreen extends StatelessWidget {
 
   const OrdersScreen({super.key});
 
-  @override
+  /* @override
   Widget build(BuildContext context) {
     print('building orders');
     final ordersManager = OrdersManager();
@@ -23,5 +24,24 @@ class OrdersScreen extends StatelessWidget {
           itemCount: ordersManager.orderCount,
           itemBuilder: (ctx, i) => OrderItemCard(ordersManager.orders[i]),
         ));
+  }*/ // phan 3 buoc 4
+
+  @override
+  Widget build(BuildContext context) {
+    print('building orders');
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Your Orders'),
+      ),
+      drawer: const AppDrawer(),
+      body: Consumer<OrdersManager>(
+        builder: (ctx, ordersManager, child) {
+          return ListView.builder(
+            itemCount: ordersManager.orderCount,
+            itemBuilder: (ctx, i) => OrderItemCard(ordersManager.orders[i]),
+          );
+        },
+      ),
+    );
   }
 }
