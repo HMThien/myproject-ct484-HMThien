@@ -86,3 +86,33 @@ class ProductsManager with ChangeNotifier {
     notifyListeners();
   }
 }
+
+/*Future<void> _saveForm() async {
+    final isValid = _editForm.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _editForm.currentState!.save();
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final ProductsManager = context.read<ProductsManager>();
+      if (_editedProduct.id != null) {
+        ProductsManager.updateProduct(_editedProduct);
+      } else {
+        ProductsManager.addProduct(_editedProduct);
+      }
+    } catch (error) {
+      await showErrorDialog(context, 'Something went wrong');
+    }
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (mounted) {
+      Navigator.of(context).pop();
+    }
+  }*/

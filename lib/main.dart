@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:myshop/ui/orders/orders_screen.dart';
+import 'package:myshop/ui/products/edit_product_screen.dart';
 import 'package:myshop/ui/screens.dart';
 // ignore: unused_import
 import 'ui/products/product_detail_screen.dart';
@@ -13,6 +14,7 @@ import 'ui/products/user_products_screen.dart';
 import 'ui/cart/cart_screen.dart';
 
 import 'package:provider/provider.dart';
+export 'products/edit_product_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,17 +38,17 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'MyShop',
-        //debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Lato',
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.purple,
-          ).copyWith(
-            secondary: Colors.deepOrange,
+          title: 'MyShop',
+          //debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Lato',
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.purple,
+            ).copyWith(
+              secondary: Colors.deepOrange,
+            ),
           ),
-        ),
-        /*home: Scaffold(
+          /*home: Scaffold(
         appBar: AppBar(
           title: const Text('MyShop'),
         ),
@@ -54,40 +56,50 @@ class MyApp extends StatelessWidget {
           child: Text('Welcome to MyShop'),
         ),
       ),*/
-        /*home: const SafeArea(
+          /*home: const SafeArea(
         /*child: ProductDetailScreen(
           ProductsManager().items[0],*/ //Khuc sau Phần 1 buoc 2
         child: ProductsOverviewScreen(),
       ),*/ // P1 buoc 4
-        /*home: const SafeArea(
+          /*home: const SafeArea(
         // child: UserProductsScreen(), phan 2 buoc 1
         // child: CartScreen(), phần 2 buoc 2
         child: OrdersScreen(),*/ //Phan 2 buoc 3
 
-        home: const ProductsOverviewScreen(),
-        routes: {
-          CartScreen.routeName: (ctx) => const CartScreen(),
-          OrdersScreen.routeName: (ctx) => const OrdersScreen(),
-          UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
-        },
+          home: const ProductsOverviewScreen(),
+          routes: {
+            CartScreen.routeName: (ctx) => const CartScreen(),
+            OrdersScreen.routeName: (ctx) => const OrdersScreen(),
+            UserProductsScreen.routeName: (ctx) => const UserProductsScreen(),
+          },
+          onGenerateRoute: (settings) {
+            if (settings.name == ProductDetailScreen.routeName) {
+              final productId = settings.arguments as String;
+              return MaterialPageRoute(
+                builder: (ctx) {
+                  return ProductDetailScreen(
+                    // ProductsManager().findById(productId)!, Phan 3 buoc 2
 
-        onGenerateRoute: (settings) {
-          if (settings.name == ProductDetailScreen.routeName) {
-            final productId = settings.arguments as String;
-            return MaterialPageRoute(
-              builder: (ctx) {
-                return ProductDetailScreen(
-                  // ProductsManager().findById(productId)!, Phan 3 buoc 2
-
-                  ctx.read<ProductsManager>().findById(productId)!,
+                    ctx.read<ProductsManager>().findById(productId)!,
+                  );
+                },
+              );
+            } else {
+              if (settings.name == EditProductScreen.routeName) {
+                final productId = settings.arguments as String?;
+                return MaterialPageRoute(
+                  builder: (ctx) {
+                    return EditProductScreen(
+                      productId != null
+                          ? ctx.read<ProductsManager>().findById(productId)
+                          : null,
+                    );
+                  },
                 );
-              },
-            );
-          }
-
-          return null;
-        },
-      ),
+              }
+              return null;
+            }
+          }),
     );
   }
 }
