@@ -1,0 +1,10 @@
+POST https://console.firebase.google.com/project/myshop-hmthien/database/myshop-hmthien-default-rtdb/data/~2F/products.json
+//firebasedatabase.app/products.json?auth=
+Content-Type: application/json
+{
+    "creatorId": "cy9uecJW3ugBqw0MnwBuE97U44F3",
+"description": "Prepare any meal you want.",
+"imageUrl": "https://upload.wikimedia.org/.../1024px-Cast-Iron-Pan.jpg",
+"price": 49.99,
+"title": "A Pan"
+}
