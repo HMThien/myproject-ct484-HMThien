@@ -24,7 +24,7 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key})
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +33,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AuthManager(),
         ),
-        ChangeNotifierProvider(
+        /*ChangeNotifierProvider(
           create: (ctx) => ProductsManager(),
+        ),*/ // phan 4 buoc 2
+
+        ChangeNotifierProxyProvider<AuthManager, ProductsManager>(
+          create: (ctx) => ProductsManager(),
+          update: (ctx, authManager, productsManager) {
+// Khi authManager có báo hiệu thay đổi thì đọc lại authToken
+// cho productManager
+            productsManager!.authToken = authManager.authToken;
+            return productsManager;
+          },
         ),
+
         ChangeNotifierProvider(
           create: (ctx) => CartManager(),
         ),

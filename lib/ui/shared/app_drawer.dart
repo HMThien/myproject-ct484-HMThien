@@ -3,9 +3,8 @@ import 'package:myshop/ui/auth/auth_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../products/user_products_screen.dart';
-
-import 'package:provider/provider.dart';
-import 'package:myshop/ui/auth/auth_manager.dart';
+import '../auth/auth_manager.dart';
+import '../orders/orders_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

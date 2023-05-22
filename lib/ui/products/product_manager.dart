@@ -1,8 +1,35 @@
 import '../../models/product.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../models/auth_token.dart';
+import '../../services/products_service.dart';
+
 class ProductsManager with ChangeNotifier {
-  final List<Product> _items = [
+  List<Product> _item = [];
+
+  final ProductsService _productsService;
+
+  ProductsManager([AuthToken? authToken])
+      : _productsService = ProductsService(authToken);
+
+  set authToken(AuthToken? authToken) {
+    _productsService.authToken = authToken;
+  }
+
+  Future<void> addProduct(Product product) async {
+    final newProduct = await _productsService.addProduct(product);
+    if (newProduct != null) {
+      _items.add(newProduct);
+      notifyListeners();
+    }
+  }
+
+  Future<void> fetchProducts([bool filterByUser = false]) async {
+    _items = await _productsService.fetchProducts(filterByUser);
+    notifyListeners();
+  }
+
+  List<Product> _items = [
     Product(
       id: 'p1',
       title: 'Red Shirt',
@@ -58,14 +85,14 @@ class ProductsManager with ChangeNotifier {
     }
   }
 
-  void addProduct(Product product) {
+  /*void addProduct(Product product) {
     _items.add(
       product.copyWith(
         id: 'p${DateTime.now().toIso8601String()}',
       ),
     );
     notifyListeners();
-  }
+  }*/ //Phan 4 buoc 2
 
   void updateProduct(Product product) {
     final index = _items.indexWhere((item) => item.id == product.id);
