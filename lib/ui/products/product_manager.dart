@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../models/product.dart';
 import 'package:flutter/foundation.dart';
 
@@ -94,11 +96,13 @@ class ProductsManager with ChangeNotifier {
     notifyListeners();
   }*/ //Phan 4 buoc 2
 
-  void updateProduct(Product product) {
+  Future<void> updateProduct(Product product) async {
     final index = _items.indexWhere((item) => item.id == product.id);
     if (index >= 0) {
-      _items[index] = product;
-      notifyListeners();
+      if (await _productsService.updateProduct(product)) {
+        _items[index] = product;
+        notifyListeners();
+      }
     }
   }
 
@@ -107,39 +111,15 @@ class ProductsManager with ChangeNotifier {
     product.isFavorite = !savedStates;
   }
 
-  void deleteProduct(String id) {
+  Future<void> deleteProduct(String id) async {
     final index = _items.indexWhere((item) => item.id == id);
+    Product? existingProduct = _items[index];
     _items.removeAt(index);
     notifyListeners();
+
+    if (!await _productsService.deleteProduct(id)) {
+      _items.insert(index, existingProduct);
+      notifyListeners();
+    }
   }
 }
-
-/*Future<void> _saveForm() async {
-    final isValid = _editForm.currentState!.validate();
-    if (!isValid) {
-      return;
-    }
-    _editForm.currentState!.save();
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      final ProductsManager = context.read<ProductsManager>();
-      if (_editedProduct.id != null) {
-        ProductsManager.updateProduct(_editedProduct);
-      } else {
-        ProductsManager.addProduct(_editedProduct);
-      }
-    } catch (error) {
-      await showErrorDialog(context, 'Something went wrong');
-    }
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (mounted) {
-      Navigator.of(context).pop();
-    }
-  }*/

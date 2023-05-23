@@ -11,3 +11,5 @@ export 'auth/auth_manager.dart';
 export 'auth/auth_screen.dart';
 
 export 'splash_screen.dart';
+
+export 'products/edit_product_screen.dart';
