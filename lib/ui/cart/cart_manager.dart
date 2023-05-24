@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-
+import 'package:flutter/material.dart';
 import '../../models/cart_item.dart';
 import '../../models/product.dart';
 
@@ -17,7 +17,7 @@ class CartManager with ChangeNotifier {
     return _items.length;
   }
 
-  List<CartItem> get product {
+  List<CartItem> get products {
     return _items.values.toList();
   }
 

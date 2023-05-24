@@ -79,7 +79,7 @@ class CartScreen extends StatelessWidget {
                   ? null
                   : () {
                       context.read<OrdersManager>().addOder(
-                            cart.product,
+                            cart.products,
                             cart.totalAmount,
                           );
                       cart.clear();

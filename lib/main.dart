@@ -2,21 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:myshop/ui/orders/orders_screen.dart';
-import 'package:myshop/ui/products/edit_product_screen.dart';
-import 'package:myshop/ui/screens.dart';
+import 'ui/orders/order_screen.dart';
 import 'ui/screens.dart';
-// ignore: unused_import
 import 'ui/products/product_detail_screen.dart';
-// ignore: unused_import
 import 'ui/products/product_manager.dart';
 import 'ui/products/product_overview_screen.dart';
 import 'ui/products/user_products_screen.dart';
 
 import 'ui/cart/cart_screen.dart';
-
+import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
-export 'products/edit_product_screen.dart';
+export 'ui/products/edit_product_screen.dart';
+import 'ui/screens.dart';
 
 Future<void> main() async {
   await dotenv.load();
@@ -57,7 +54,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<AuthManager>(builder: (ctx, authManager, child) {
         return MaterialApp(
             title: 'MyShop',
-            //debugShowCheckedModeBanner: false,
+            debugShowCheckedModeBanner: false,
             theme: ThemeData(
               fontFamily: 'Lato',
               colorScheme: ColorScheme.fromSwatch(

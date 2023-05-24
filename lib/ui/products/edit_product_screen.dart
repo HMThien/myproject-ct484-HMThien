@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myshop/models/product.dart';
+import 'package:myshop/ui/products/product_manager.dart';
+import 'package:myshop/ui/screens.dart';
 import 'package:provider/provider.dart';
-import '../../models/product.dart';
-import '../shared/dialog_utils.dart';
+import '../models/product.dart';
 import 'product_manager.dart';
+import '../screens.dart';
+import '../shared/dialog_utils.dart';
 
 class EditProductScreen extends StatefulWidget {
   static const routeName = '/edit-product';
@@ -35,11 +39,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   var _isLoading = false;
 
   bool _isValidImageUrl(String value) {
-    return (value.startsWith('http') ||
-        value.startsWith('http') &&
-            (value.endsWith('.png') ||
-                value.endsWith('.jpg') ||
-                value.endsWith('.jpeg')));
+    return (value.startsWith('http') || value.startsWith('https')) &&
+        (value.endsWith('.png') ||
+            value.endsWith('jpg') ||
+            value.endsWith('jpeg'));
   }
 
   @override
@@ -61,9 +64,38 @@ class _EditProductScreenState extends State<EditProductScreen> {
   void dispose() {
     _imageUrlController.dispose();
     _imageUrlFocusNode.dispose();
+    super.dispose();
   }
 
-  Future<void> _saveForm() async {}
+  Future<void> _saveForm() async {
+    final isValid = _editForm.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+    _editForm.currentState!.save();
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final productsManager = context.read<ProductsManager>();
+      if (_editedProduct.id != null) {
+        await productsManager.updateProduct(_editedProduct);
+      } else {
+        await productsManager.addProduct(_editedProduct);
+      }
+    } catch (error) {
+      await showErrorDialog(context, 'Something went wrong');
+    }
+    setState(() {
+      _isLoading = false;
+    });
+
+    if (mounted) {
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +138,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       autofocus: true,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please provide a value';
+          return 'Please provide a value.';
         }
         return null;
       },
@@ -124,13 +156,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
       keyboardType: TextInputType.number,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter a proce';
+          return 'Please enter a price.';
         }
         if (double.tryParse(value) == null) {
-          return 'Please enter a vail number';
+          return 'Please enter a vaild number';
         }
         if (double.parse(value) <= 0) {
-          return 'Plaese enter a number grater than zero.';
+          return 'Please enter a number greater than zero.';
         }
         return null;
       },
@@ -148,7 +180,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       keyboardType: TextInputType.multiline,
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please anter a description.';
+          return 'Please enter a description.';
         }
         if (value.length < 10) {
           return 'Should be at least 10 characters long.';
@@ -204,7 +236,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
       onFieldSubmitted: (value) => _saveForm(),
       validator: (value) {
         if (value!.isEmpty) {
-          return 'Please enter an image URL';
+          return 'Please emter an image URL';
         }
         if (!_isValidImageUrl(value)) {
           return 'Please enter a valid image URL';

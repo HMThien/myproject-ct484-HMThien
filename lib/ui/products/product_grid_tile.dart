@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myshop/ui/screens.dart';
 import 'product_manager.dart';
 import 'package:provider/provider.dart';
 import '../../models/product.dart';
@@ -70,6 +71,51 @@ class ProductGridTile extends StatelessWidget {
       ),
     );*/ // Phan 3 buoc 1
 
+    /* return GridTileBar(
+     backgroundColor: Colors.black87,
+      leading: IconButton(
+        icon: Icon(
+          product.isFavorite ? Icons.favorite : Icons.favorite_border,
+        ),
+        color: Theme.of(context).colorScheme.secondary,
+        onPressed: () {
+          print('Toggle a favorite prosuct');
+        },
+      ),
+      title: Text(
+        product.title,
+        textAlign: TextAlign.center,
+      ),
+      trailing: IconButton(
+        icon: const Icon(
+          Icons.shopping_cart,
+        ),
+        onPressed: () {
+          final cart = context.read<CartManager>();
+          cart.addItem(product);
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: const Text(
+                  'Item added to cart',
+                ),
+                duration: const Duration(seconds: 2),
+                action: SnackBarAction(
+                  label: 'UNDO',
+                  onPressed: () {
+                    cart.removeSingeItem(product.id!);
+                  },
+                ),
+              ),
+            );
+        },
+        color: Theme.of(context).colorScheme.secondary,
+      ),
+    );
+  }
+}*/
+
     return GridTileBar(
       backgroundColor: Colors.black87,
       leading: ValueListenableBuilder<bool>(
@@ -81,9 +127,7 @@ class ProductGridTile extends StatelessWidget {
               ),
               color: Theme.of(context).colorScheme.secondary,
               onPressed: () {
-                //product.isFavorite = !isFavorite; Phan 4 buoc 3
-
-                ctx.read<ProductsManager>().toggleFavoriteStates(product);
+                product.isFavorite = !isFavorite;
               },
             );
           }),

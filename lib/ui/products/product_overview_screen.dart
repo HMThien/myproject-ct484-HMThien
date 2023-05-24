@@ -52,6 +52,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       drawer: const AppDrawer(),
       // body: ProductsGrid(_showOnlyFavorites), phan 4 buoc 2
       body: FutureBuilder(
+        future: _fetchProducts,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return ValueListenableBuilder<bool>(
@@ -90,7 +91,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           Navigator.of(context).pushNamed(CartScreen.routeName);
         },
       ),
-    );*/ //phan 3 cuoc 3
+    );*/ //phan 3 buoc 3
 
     return Consumer<CartManager>(builder: (ctx, cartManager, child) {
       return TopRightBadge(
@@ -110,13 +111,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget buildProductFilterMenu() {
     return PopupMenuButton(
       onSelected: (FilterOptions selectedValue) {
-        setState(() {
-          if (selectedValue == FilterOptions.favorites) {
-            _showOnlyFavorites.value = true;
-          } else {
-            _showOnlyFavorites.value = false;
-          }
-        });
+        // setState(() {
+        if (selectedValue == FilterOptions.favorites) {
+          _showOnlyFavorites.value = true;
+        } else {
+          _showOnlyFavorites.value = false;
+        }
+        // });
       },
       icon: const Icon(
         Icons.more_vert,

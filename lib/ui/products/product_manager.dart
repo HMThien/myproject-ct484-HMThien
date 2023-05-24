@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import '../../models/product.dart';
 import 'package:flutter/foundation.dart';
 
@@ -7,30 +5,6 @@ import '../../models/auth_token.dart';
 import '../../services/products_service.dart';
 
 class ProductsManager with ChangeNotifier {
-  List<Product> _item = [];
-
-  final ProductsService _productsService;
-
-  ProductsManager([AuthToken? authToken])
-      : _productsService = ProductsService(authToken);
-
-  set authToken(AuthToken? authToken) {
-    _productsService.authToken = authToken;
-  }
-
-  Future<void> addProduct(Product product) async {
-    final newProduct = await _productsService.addProduct(product);
-    if (newProduct != null) {
-      _items.add(newProduct);
-      notifyListeners();
-    }
-  }
-
-  Future<void> fetchProducts([bool filterByUser = false]) async {
-    _items = await _productsService.fetchProducts(filterByUser);
-    notifyListeners();
-  }
-
   List<Product> _items = [
     Product(
       id: 'p1',
@@ -67,6 +41,16 @@ class ProductsManager with ChangeNotifier {
       isFavorite: true,
     ),
   ];
+
+  final ProductsService _productsService;
+
+  ProductsManager([AuthToken? authToken])
+      : _productsService = ProductsService(authToken);
+
+  set authToken(AuthToken? authToken) {
+    _productsService.authToken = authToken;
+  }
+
   int get itemCount {
     return _items.length;
   }
@@ -106,11 +90,12 @@ class ProductsManager with ChangeNotifier {
     }
   }
 
-  Future<void> toggleFavoriteStates(Product product) async {
-    final savedStates = product.isFavorite;
-    product.isFavorite = !savedStates;
+  Future<void> toggleFavoriteStatus(Product product) async {
+    final savedStatus = product.isFavorite;
+    product.isFavorite = !savedStatus;
+
     if (!await _productsService.saveFavoriteStatus(product)) {
-      product.isFavorite = savedStates;
+      product.isFavorite = savedStatus;
     }
   }
 
@@ -124,5 +109,18 @@ class ProductsManager with ChangeNotifier {
       _items.insert(index, existingProduct);
       notifyListeners();
     }
+  }
+
+  Future<void> addProduct(Product product) async {
+    final newProduct = await _productsService.addProduct(product);
+    if (newProduct != null) {
+      _items.add(newProduct);
+      notifyListeners();
+    }
+  }
+
+  Future<void> fetchProducts([bool filterByUser = false]) async {
+    _items = await _productsService.fetchProducts(filterByUser);
+    notifyListeners();
   }
 }

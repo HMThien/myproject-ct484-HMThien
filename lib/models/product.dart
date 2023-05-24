@@ -60,7 +60,7 @@ class Product {
     return Product(
       id: json['id'],
       title: json['title'],
-      description: json['desciption'],
+      description: json['description'],
       price: json['price'],
       imageUrl: json['imageUrl'],
     );
