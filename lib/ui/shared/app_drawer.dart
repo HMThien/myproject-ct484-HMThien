@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../products/user_products_screen.dart';
 import '../auth/auth_manager.dart';
 import '../orders/order_screen.dart';
+import '../products/contact_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});
@@ -14,13 +15,13 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           AppBar(
-            title: const Text('Hello friend'),
+            title: const Text('Xin chào!'),
             automaticallyImplyLeading: false,
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.shop),
-            title: const Text('Shop'),
+            leading: const Icon(Icons.shop_2),
+            title: const Text('Home'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed('/');
             },
@@ -28,7 +29,7 @@ class AppDrawer extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: const Icon(Icons.payment),
-            title: const Text('Orders'),
+            title: const Text('Đơn hàng'),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(OrdersScreen.routeName);
@@ -36,8 +37,8 @@ class AppDrawer extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Manage Products'),
+            leading: const Icon(Icons.laptop_chromebook),
+            title: const Text('Quản lý sản phẩm'),
             onTap: () {
               Navigator.of(context)
                   .pushReplacementNamed(UserProductsScreen.routeName);
@@ -45,8 +46,17 @@ class AppDrawer extends StatelessWidget {
           ),
           const Divider(),
           ListTile(
+            leading: const Icon(Icons.contact_page),
+            title: const Text('Liên hệ'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(ContactScreen.routeName);
+            },
+          ),
+          const Divider(),
+          ListTile(
             leading: const Icon(Icons.exit_to_app),
-            title: const Text('Logout'),
+            title: const Text('Đăng xuất'),
             onTap: () {
               Navigator.of(context)
                 ..pop()

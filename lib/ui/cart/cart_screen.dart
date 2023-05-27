@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/screens.dart';
+import '/ui/screens.dart';
 import 'package:provider/provider.dart';
 
 import 'cart_item_card.dart';
@@ -12,12 +12,11 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final cart = CartManager(); phan 3 buoc 3
     final cart = context.watch<CartManager>();
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your cart'),
+        title: const Text('Giỏ hàng'),
       ),
       body: Column(
         children: <Widget>[
@@ -53,7 +52,7 @@ class CartScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const Text(
-              'Total',
+              'Tổng thanh toán:',
               style: TextStyle(fontSize: 20),
             ),
             const Spacer(),
@@ -67,14 +66,6 @@ class CartScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).primaryColor,
             ),
             TextButton(
-              /*onPressed: () {
-                print('An order has been added');
-              },
-              style: TextButton.styleFrom(
-                textStyle: TextStyle(color: Theme.of(context).primaryColor),
-              ),
-              child: const Text('ORDER NOW'),
-            )*/ // Phan 3 buoc 4
               onPressed: cart.totalAmount <= 0
                   ? null
                   : () {
@@ -87,7 +78,7 @@ class CartScreen extends StatelessWidget {
               style: TextButton.styleFrom(
                 textStyle: TextStyle(color: Theme.of(context).primaryColor),
               ),
-              child: const Text('ORDER NOW'),
+              child: const Text('Thanh toán ngay'),
             ),
           ],
         ),

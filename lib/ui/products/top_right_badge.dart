@@ -25,7 +25,7 @@ class TopRightBadge extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              color: color ?? Theme.of(context).colorScheme.secondary,
+              color: color ?? Theme.of(context).colorScheme.background,
             ),
             constraints: const BoxConstraints(
               minWidth: 16,
@@ -34,9 +34,7 @@ class TopRightBadge extends StatelessWidget {
             child: Text(
               data.toString(),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 10,
-              ),
+              style: const TextStyle(fontSize: 10, color: Colors.black87),
             ),
           ),
         )

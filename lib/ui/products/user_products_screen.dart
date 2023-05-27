@@ -2,11 +2,12 @@ import 'dart:html';
 import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/products/edit_product_screen.dart';
+import 'package:myproject/ui/products/edit_product_screen.dart';
 import 'package:provider/provider.dart';
 import 'user_product_list_tile.dart';
 import 'product_manager.dart';
 import '../shared/app_drawer.dart';
+import 'add_product_screen.dart';
 
 class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
@@ -40,9 +41,8 @@ class UserProductsScreen extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.add),
       onPressed: () {
-        // print('Go to edit product screen'); Phan 3 buoc 5
         Navigator.of(context).pushNamed(
-          EditProductScreen.routeName,
+          AddProductScreen.routeName,
         );
       },
     );
@@ -50,20 +50,14 @@ class UserProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final productsManager = ProductsManager()
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Products'),
+        title: const Text('Quản lý sản phẩm'),
         actions: <Widget>[
           buildAddButton(context),
         ],
       ),
       drawer: const AppDrawer(),
-      /*body: RefreshIndicator(
-        onRefresh: () async => print('refresh products'),
-        child: buildUserProductListView(productsManager),
-      ),*/
-
       body: FutureBuilder(
         future: _refreshProducts(context),
         builder: (ctx, snapshot) {
@@ -80,18 +74,4 @@ class UserProductsScreen extends StatelessWidget {
       ),
     );
   }
-
-  /*Widget buildUserProductListView(ProductsManager productsManager) {
-    return ListView.builder(
-      itemCount: productsManager.itemCount,
-      itemBuilder: (ctx, i) => Column(
-        children: [
-          UserProductListTile(
-            productsManager.items[i],
-          ),
-          const Divider(),
-        ],
-      ),
-    );
-  }*/ //phan 3 buoc 2
 }

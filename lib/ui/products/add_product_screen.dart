@@ -8,9 +8,9 @@ import 'product_manager.dart';
 import '../screens.dart';
 import '../shared/dialog_utils.dart';
 
-class EditProductScreen extends StatefulWidget {
-  static const routeName = '/edit-product';
-  EditProductScreen(
+class AddProductScreen extends StatefulWidget {
+  static const routeName = '/add-product';
+  AddProductScreen(
     Product? product, {
     super.key,
   }) {
@@ -26,12 +26,13 @@ class EditProductScreen extends StatefulWidget {
       this.product = product;
     }
   }
+
   late final Product product;
   @override
-  State<EditProductScreen> createState() => _EditProductScreenState();
+  State<AddProductScreen> createState() => _AddProductScreenState();
 }
 
-class _EditProductScreenState extends State<EditProductScreen> {
+class _AddProductScreenState extends State<AddProductScreen> {
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
   final _editForm = GlobalKey<FormState>();
@@ -101,7 +102,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cập nhật sản phẩm'),
+        title: const Text('Thêm sản phẩm mới'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.save),
@@ -133,7 +134,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   TextFormField buildTitleField() {
     return TextFormField(
       initialValue: _editedProduct.title,
-      decoration: const InputDecoration(labelText: 'Tên sản phẩm'),
+      decoration: const InputDecoration(labelText: 'Tên SP'),
       textInputAction: TextInputAction.next,
       autofocus: true,
       validator: (value) {

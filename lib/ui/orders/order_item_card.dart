@@ -64,7 +64,13 @@ class _OrderItemCardState extends State<OrderItemCard> {
 
   Widget buildOrderSummary() {
     return ListTile(
-      title: Text('\$${widget.order.amount}'),
+      title: Text(
+        '\$${widget.order.amount}',
+        style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.deepOrange,
+            fontSize: 25),
+      ),
       subtitle: Text(
         DateFormat('dd/MM/yyyy hh:mm').format(widget.order.dateTime),
       ),

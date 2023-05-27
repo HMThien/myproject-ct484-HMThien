@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 
-import 'package:myshop/models/auth_token.dart';
-import 'package:myshop/services/auth_service.dart';
+import '/models/auth_token.dart';
+import '/services/auth_service.dart';
 
 class AuthManager with ChangeNotifier {
   AuthToken? _authToken;

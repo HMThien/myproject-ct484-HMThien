@@ -1,39 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:myproject/models/product.dart';
+import '../shared/app_drawer.dart';
 
-import '../../models/product.dart';
+class ContactScreen extends StatelessWidget {
+  static const routeName = '/contact';
 
-class ProductDetailScreen extends StatelessWidget {
-  static const routeName = '/product-detail';
-
-  const ProductDetailScreen(
-    this.product, {
-    super.key,
-  });
-
-  final Product product;
+  ContactScreen(Product? product);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.title),
+        title: Text('Mọi chi tiết xin liên hệ'),
       ),
+      drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(
               height: 300,
               width: double.infinity,
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
-              '\$${product.price}',
+              'Thiendt20v7x081@dttx.ctu.edu.vn',
               style: const TextStyle(
                 color: Colors.deepOrange,
                 fontSize: 25,
@@ -46,11 +38,12 @@ class ProductDetailScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
-              child: Text(
-                product.description,
-                textAlign: TextAlign.center,
-                softWrap: true,
-              ),
+              child: Text('Địa chỉ: TP Cao Lãnh - Đồng Tháp',
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  )),
             )
           ],
         ),

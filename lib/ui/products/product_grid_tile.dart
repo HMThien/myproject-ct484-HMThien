@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/screens.dart';
+import '/ui/screens.dart';
 import 'product_manager.dart';
 import 'package:provider/provider.dart';
 import '../../models/product.dart';
@@ -17,18 +17,9 @@ class ProductGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(5),
       child: GridTile(
         footer: buildGridFooterBar(context),
-        /*child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (ctx) => ProductDetailScreen(product),
-              ),
-            );
-          },*/ //Phan 2 buoc 3
-
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(
@@ -78,11 +69,11 @@ class ProductGridTile extends StatelessWidget {
             ..showSnackBar(
               SnackBar(
                 content: const Text(
-                  'Item added to cart',
+                  'San phẩm bạn chọn đã thêm vào giỏ hàng',
                 ),
-                duration: const Duration(seconds: 2),
+                duration: const Duration(seconds: 5),
                 action: SnackBarAction(
-                  label: 'UNDO',
+                  label: 'Hủy vừa chọn',
                   onPressed: () {
                     cart.removeSingeItem(product.id!);
                   },

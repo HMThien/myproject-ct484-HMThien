@@ -7,7 +7,7 @@ import 'package:flutter/foundation.dart';
 
 class OrdersManager with ChangeNotifier {
   final List<OrderItem> _orders = [
-    OrderItem(
+    /* OrderItem(
       id: 'o1',
       amount: 59.98,
       products: [
@@ -19,7 +19,7 @@ class OrdersManager with ChangeNotifier {
         )
       ],
       dateTime: DateTime.now(),
-    )
+    )*/
   ];
 
   int get orderCount {

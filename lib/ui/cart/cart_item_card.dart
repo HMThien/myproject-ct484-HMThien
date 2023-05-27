@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/screens.dart';
+import '/ui/screens.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/cart_item.dart';
@@ -36,10 +36,9 @@ class CartItemCard extends StatelessWidget {
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) {
         return showConfirmDialog(
-            context, 'Do you want to remove the item from the cart?');
+            context, 'Bạn muốn xóa sản phẩm khỏi giỏ hàng?');
       },
       onDismissed: (direction) {
-        // print('Cart item dismissed'); phan 3 buoc 2
         context.read<CartManager>().removeItem(productId);
       },
       child: buildItemCard(),
@@ -64,8 +63,14 @@ class CartItemCard extends StatelessWidget {
             ),
           ),
           title: Text(cardItem.title),
-          subtitle: Text('Total: \$${(cardItem.price * cardItem.quantity)}'),
-          trailing: Text('${cardItem.quantity} x'),
+          subtitle: Text(
+            'Total: \$${(cardItem.price * cardItem.quantity)}',
+            style: TextStyle(
+              color: Colors.deepOrange,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          trailing: Text('${cardItem.quantity}  x'),
         ),
       ),
     );

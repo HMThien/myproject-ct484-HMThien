@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/products/product_manager.dart';
+import 'product_manager.dart';
 import 'package:provider/provider.dart';
 import '../cart/cart_screen.dart';
 import 'product_grid.dart';
@@ -17,8 +17,6 @@ class ProductsOverviewScreen extends StatefulWidget {
 }
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
-  // var _showOnlyFavorites = false; Phan 4 buoc 2
-
   final _showOnlyFavorites = ValueNotifier<bool>(false);
   late Future<void> _fetchProducts;
 
@@ -30,27 +28,15 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    /*return Scaffold(
-      appBar: AppBar(
-        title: const Text('MyShop'),
-        actions: <Widget>[
-          buildProductFilterMenu(),
-          buildShoppingCartIcon(),
-        ],
-      ),
-      body: ProductsGrid(_showOnlyFavorites),
-    );*/ // phan 2 buoc 3
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MyShop'),
+        title: const Text('LAPTOP - PHỤ KIỆN'),
         actions: <Widget>[
           buildProductFilterMenu(),
           buildShoppingCartIcon(),
         ],
       ),
       drawer: const AppDrawer(),
-      // body: ProductsGrid(_showOnlyFavorites), phan 4 buoc 2
       body: FutureBuilder(
         future: _fetchProducts,
         builder: (context, snapshot) {
@@ -71,28 +57,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   }
 
   Widget buildShoppingCartIcon() {
-    /*return IconButton(
-      icon: const Icon(
-        Icons.shopping_cart,
-      ),
-      onPressed: () {
-        // print('Go to cart screen'); Phan 2 buoc 3
-        Navigator.of(context).pushNamed(CartScreen.routeName);
-      },
-    );*/ // Phản 2 buoc 4
-
-    /*return TopRightBadge(
-      data: CartManager().productCount,
-      child: IconButton(
-        icon: const Icon(
-          Icons.shopping_cart,
-        ),
-        onPressed: () {
-          Navigator.of(context).pushNamed(CartScreen.routeName);
-        },
-      ),
-    );*/ //phan 3 buoc 3
-
     return Consumer<CartManager>(builder: (ctx, cartManager, child) {
       return TopRightBadge(
         data: cartManager.productCount,
@@ -125,11 +89,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       itemBuilder: (ctx) => [
         const PopupMenuItem(
           value: FilterOptions.favorites,
-          child: Text('Only Favorites'),
+          child: Text('Hiển thị yêu thích'),
         ),
         const PopupMenuItem(
           value: FilterOptions.all,
-          child: Text('Show all'),
+          child: Text('Hiển thị tất cả'),
         ),
       ],
     );

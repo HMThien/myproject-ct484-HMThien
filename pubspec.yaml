@@ -1,4 +1,4 @@
-name: myshop
+name: myproject
 description: A new Flutter project.
 
 publish_to: 'none'
@@ -32,12 +32,16 @@ flutter:
   assets: 
     - .env
   fonts:
-    - family: Lato
+    - family: FS
       fonts:
-      - asset: assets/fonts/Lato-Regular.ttf
-      - asset: assets/fonts/Lato-Bold.ttf
-        weight: 700
-    - family: Anton
+      - asset: assets/fonts/FS Magistral-Medium.ttf
+      - asset: assets/fonts/FS Magistral-Bold.ttf
+      #- asset: assets/fonts/calibri.ttf
+      #- asset: assets/fonts/calibrib.ttf
+      #- asset: assets/fonts/calibrii.ttf
+      #- asset: assets/fonts/calibriz.ttf
+        weight: 800
+    - family: UTM
       fonts:
-      - asset: assets/fonts/Anton-Regular.ttf
+      - asset: assets/fonts/UTM Bitsumishi Pro.ttf
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myshop/ui/products/edit_product_screen.dart';
-import 'package:myshop/ui/screens.dart';
+import 'edit_product_screen.dart';
+import 'package:myproject/ui/screens.dart';
 import 'package:provider/provider.dart';
 import '../../models/product.dart';
 
@@ -31,13 +31,6 @@ class UserProductListTile extends StatelessWidget {
   }
 
   Widget buildDeleteButton(BuildContext context) {
-    /*return IconButton(
-      icon: const Icon(Icons.delete),
-      onPressed: () {
-        print('Delete a product');
-      },
-    );*/ //phan 3 buoc 2
-
     return IconButton(
       icon: const Icon(Icons.delete),
       onPressed: () {
@@ -47,7 +40,7 @@ class UserProductListTile extends StatelessWidget {
           ..showSnackBar(
             const SnackBar(
               content: Text(
-                'Product deleted',
+                'Sản phẩm đã được xóa khỏi danh sách',
                 textAlign: TextAlign.center,
               ),
             ),
@@ -61,7 +54,6 @@ class UserProductListTile extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () {
-        // print('Go to edit product screen'); Phan 3 buoc 5
         Navigator.of(context).pushNamed(
           EditProductScreen.routeName,
           arguments: product.id,
