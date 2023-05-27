@@ -46,41 +46,20 @@ class ProductGridTile extends StatelessWidget {
   }
 
   Widget buildGridFooterBar(BuildContext context) {
-    /*return GridTileBar(
+    return GridTileBar(
       backgroundColor: Colors.black87,
-      leading: IconButton(
-        icon: Icon(
-          product.isFavorite ? Icons.favorite : Icons.favorite_border,
-        ),
-        color: Theme.of(context).colorScheme.secondary,
-        onPressed: () {
-          print('Toggle a favorite prosuct');
-        },
-      ),
-      title: Text(
-        product.title,
-        textAlign: TextAlign.center,
-      ),
-      trailing: IconButton(
-        icon: const Icon(
-          Icons.shopping_cart,
-        ),
-        onPressed: () {
-          print('Add item to cart');
-        },
-        color: Theme.of(context).colorScheme.secondary,
-      ),
-    );*/ // Phan 3 buoc 1
-
-    /* return GridTileBar(
-     backgroundColor: Colors.black87,
-      leading: IconButton(
-        icon: Icon(
-          product.isFavorite ? Icons.favorite : Icons.favorite_border,
-        ),
-        color: Theme.of(context).colorScheme.secondary,
-        onPressed: () {
-          print('Toggle a favorite prosuct');
+      leading: ValueListenableBuilder<bool>(
+        valueListenable: product.isFavoriteListenable,
+        builder: (ctx, isFavorite, child) {
+          return IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+            ),
+            color: Theme.of(context).colorScheme.secondary,
+            onPressed: () {
+              product.isFavorite = !isFavorite;
+            },
+          );
         },
       ),
       title: Text(
@@ -113,26 +92,6 @@ class ProductGridTile extends StatelessWidget {
         },
         color: Theme.of(context).colorScheme.secondary,
       ),
-    );
-  }
-}*/
-
-    return GridTileBar(
-      backgroundColor: Colors.black87,
-      leading: ValueListenableBuilder<bool>(
-          valueListenable: product.isFavoriteListenable,
-          builder: (ctx, isFavorite, child) {
-            return IconButton(
-              icon: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
-              ),
-              color: Theme.of(context).colorScheme.secondary,
-              onPressed: () {
-                //product.isFavorite = !isFavorite;
-                ctx.read<ProductsManager>().toggleFavoriteStatus(product);
-              },
-            );
-          }),
     );
   }
 }
