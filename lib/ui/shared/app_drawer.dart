@@ -16,6 +16,19 @@ class AppDrawer extends StatelessWidget {
         children: <Widget>[
           AppBar(
             title: const Text('Xin chào!'),
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    const Color.fromARGB(255, 0, 255, 106).withOpacity(0.5),
+                    const Color.fromARGB(255, 54, 255, 154).withOpacity(0.9),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  stops: const [0, 1], //vi tri ti le mau từ 0 - 100%
+                ),
+              ),
+            ),
             automaticallyImplyLeading: false,
           ),
           const Divider(),

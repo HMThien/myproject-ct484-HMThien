@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:myproject/models/product.dart';
 import 'ui/orders/order_screen.dart';
 import 'ui/screens.dart';
 import 'ui/products/product_detail_screen.dart';
@@ -13,6 +14,7 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 export 'ui/products/edit_product_screen.dart';
 import 'ui/screens.dart';
+import 'ui/products/notifications_screen.dart';
 
 // thiendt20v7x081@dttx.ctu.edu.vn
 // 111111
@@ -53,9 +55,9 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               fontFamily: 'FS',
               colorScheme: ColorScheme.fromSwatch(
-                primarySwatch: Colors.deepOrange,
+                primarySwatch: Colors.amber,
               ).copyWith(
-                secondary: Colors.deepOrange,
+                secondary: Colors.amber,
               ),
             ),
             home: authManager.isAuth
@@ -122,9 +124,9 @@ class MyApp extends StatelessWidget {
                         },
                       );
                     }
+                    return null;
                   }
                 }
-                return null;
               }
             });
       }),

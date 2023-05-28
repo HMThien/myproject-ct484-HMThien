@@ -2,21 +2,23 @@ import 'package:flutter/material.dart';
 
 import '../../models/product.dart';
 
-class ProductDetailScreen extends StatelessWidget {
-  static const routeName = '/product-detail';
+class NotificationsDetailScreen extends StatelessWidget {
+  const NotificationsDetailScreen({super.key});
 
-  const ProductDetailScreen(
+  /* static const routeName = '/notification-detail';
+
+  const NotificationsDetailScreen(
     this.product, {
     super.key,
   });
 
   final Product product;
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(product.title),
+          title: const Text('Thông báo update TK'),
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -33,20 +35,16 @@ class ProductDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 300,
               width: double.infinity,
-              child: Image.network(
-                product.imageUrl,
-                fit: BoxFit.cover,
-              ),
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
-              '\$${product.price}',
-              style: const TextStyle(
+            const Text(
+              'Thông tin tài khoản',
+              style: TextStyle(
                 color: Colors.deepOrange,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -58,8 +56,8 @@ class ProductDetailScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
-              child: Text(
-                product.description,
+              child: const Text(
+                'Tài khoản bãn cần nhập mật khẩu',
                 textAlign: TextAlign.center,
                 softWrap: true,
               ),

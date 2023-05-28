@@ -65,7 +65,7 @@ class CartItemCard extends StatelessWidget {
           title: Text(cardItem.title),
           subtitle: Text(
             'Total: \$${(cardItem.price * cardItem.quantity)}',
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.deepOrange,
               fontWeight: FontWeight.bold,
             ),

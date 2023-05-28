@@ -6,6 +6,7 @@ import 'product_grid.dart';
 import '../shared/app_drawer.dart';
 import '../cart/cart_manager.dart';
 import 'top_right_badge.dart';
+import 'notifications_screen.dart';
 
 enum FilterOptions { favorites, all }
 
@@ -31,8 +32,22 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('LAPTOP - PHỤ KIỆN'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color.fromARGB(255, 0, 255, 106).withOpacity(0.5),
+                const Color.fromARGB(255, 54, 255, 154).withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0, 1], //vi tri ti le mau từ 0 - 100%
+            ),
+          ),
+        ),
         actions: <Widget>[
           buildProductFilterMenu(),
+          buildNotifications(),
           buildShoppingCartIcon(),
         ],
       ),
@@ -96,6 +111,17 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           child: Text('Hiển thị tất cả'),
         ),
       ],
+    );
+  }
+
+  Widget buildNotifications() {
+    return IconButton.outlined(
+      icon: const Icon(Icons.notifications_active),
+      onPressed: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const NotificationsScreen();
+        }));
+      },
     );
   }
 }

@@ -19,12 +19,13 @@ class AuthScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 103, 245, 110).withOpacity(0.5),
-                  Color.fromARGB(255, 100, 250, 255).withOpacity(0.9),
+                  const Color.fromARGB(255, 250, 170, 66).withOpacity(0.5),
+                  const Color.fromARGB(255, 103, 245, 110).withOpacity(0.5),
+                  const Color.fromARGB(255, 100, 250, 255).withOpacity(0.9),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                stops: const [0, 1],
+                stops: const [0, 0.7, 1], //vi tri ti le mau từ 0 - 100%
               ),
             ),
           ),

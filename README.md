@@ -1,6 +1,6 @@
 # myshop
 
-Bài tập thực hành CT484, HK2 2022-2023
+Dự án bán hàng laptop CT484, HK2 2022-2023
 
 **MSSV**: DT20V7X081
 

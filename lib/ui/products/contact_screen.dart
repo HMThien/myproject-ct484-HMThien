@@ -11,22 +11,35 @@ class ContactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mọi chi tiết xin liên hệ'),
+        title: const Text('Mọi chi tiết xin liên hệ'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color.fromARGB(255, 0, 255, 106).withOpacity(0.5),
+                const Color.fromARGB(255, 54, 255, 154).withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0, 1], //vi tri ti le mau từ 0 - 100%
+            ),
+          ),
+        ),
       ),
       drawer: const AppDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               height: 300,
               width: double.infinity,
             ),
             const SizedBox(
               height: 10,
             ),
-            Text(
+            const Text(
               'Thiendt20v7x081@dttx.ctu.edu.vn',
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.deepOrange,
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -38,10 +51,10 @@ class ContactScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
-              child: Text('Địa chỉ: TP Cao Lãnh - Đồng Tháp',
+              child: const Text('Địa chỉ: TP Cao Lãnh - Đồng Tháp',
                   textAlign: TextAlign.center,
                   softWrap: true,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 20,
                   )),
             )

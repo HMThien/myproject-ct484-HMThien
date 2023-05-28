@@ -18,7 +18,6 @@ class UserProductsScreen extends StatelessWidget {
     await context.read<ProductsManager>().fetchProducts(true);
   }
 
-  @override
   Widget buildUserProductListView() {
     return Consumer<ProductsManager>(
       builder: (ctx, productsManager, child) {
@@ -53,6 +52,19 @@ class UserProductsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Quản lý sản phẩm'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                const Color.fromARGB(255, 0, 255, 106).withOpacity(0.5),
+                const Color.fromARGB(255, 54, 255, 154).withOpacity(0.9),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: const [0, 1], //vi tri ti le mau từ 0 - 100%
+            ),
+          ),
+        ),
         actions: <Widget>[
           buildAddButton(context),
         ],

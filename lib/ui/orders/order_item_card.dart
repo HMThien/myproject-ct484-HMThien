@@ -66,7 +66,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
     return ListTile(
       title: Text(
         '\$${widget.order.amount}',
-        style: TextStyle(
+        style: const TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.deepOrange,
             fontSize: 25),
