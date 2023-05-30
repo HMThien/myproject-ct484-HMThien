@@ -19,6 +19,7 @@ dependencies:
   flutter_dotenv: ^5.0.2
   http: ^1.0.0
   shared_preferences: ^2.0.15
+  flex_color_scheme: ^7.1.2
   
  
 

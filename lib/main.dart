@@ -16,6 +16,8 @@ export 'ui/products/edit_product_screen.dart';
 import 'ui/screens.dart';
 import 'ui/products/notifications_screen.dart';
 
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+
 // thiendt20v7x081@dttx.ctu.edu.vn
 // 111111
 // https://github.com/HMThien/myproject-ct484-HMThien.git
@@ -28,6 +30,7 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+  final FlexScheme scheme = FlexScheme.wasabi;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,15 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
             title: 'LALTOP - PHỤ KIỆN',
             debugShowCheckedModeBanner: false,
-            theme: ThemeData(
+            theme: /*FlexColorScheme.light(
+              scheme: scheme,
+            ).toTheme,
+            darkTheme: FlexColorScheme.dark(
+              scheme: scheme,
+            ).toTheme,
+            themeMode: ThemeMode.system,*/
+
+                ThemeData(
               fontFamily: 'FS',
               colorScheme: ColorScheme.fromSwatch(
                 primarySwatch: Colors.amber,

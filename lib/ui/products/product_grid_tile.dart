@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '/ui/screens.dart';
 import 'product_manager.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +20,11 @@ class ProductGridTile extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(5),
       child: GridTile(
-        footer: buildGridFooterBar(context),
+        header: buildGridHeaderrBar(context),
+        footer: Container(
+          height: 100,
+          child: buildGridFooterBar(context),
+        ),
         child: GestureDetector(
           onTap: () {
             Navigator.of(context).pushNamed(
@@ -36,33 +41,20 @@ class ProductGridTile extends StatelessWidget {
     );
   }
 
-  Widget buildGridFooterBar(BuildContext context) {
+  Widget buildGridHeaderrBar(BuildContext context) {
     return GridTileBar(
       backgroundColor: Colors.black54,
-      leading: ValueListenableBuilder<bool>(
-        valueListenable: product.isFavoriteListenable,
-        builder: (ctx, isFavorite, child) {
-          return IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-            ),
-            color: Theme.of(context).colorScheme.secondary,
-            onPressed: () {
-              product.isFavorite = !isFavorite;
-            },
-          );
-        },
-      ),
       title: Text(
         product.title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          color: Colors.amber,
+        style: const TextStyle(
+          color: Colors.yellow,
+          fontSize: 19,
         ),
       ),
       trailing: IconButton(
         icon: const Icon(
           Icons.shopping_cart,
+          size: 20,
         ),
         onPressed: () {
           final cart = context.read<CartManager>();
@@ -85,6 +77,44 @@ class ProductGridTile extends StatelessWidget {
             );
         },
         color: Theme.of(context).colorScheme.secondary,
+      ),
+    );
+  }
+
+  Widget buildGridFooterBar(BuildContext context) {
+    var price = product.price;
+    //final formatVND = new NumberFormat('##.###.###', 'en_US');
+    return GridTileBar(
+      backgroundColor: Colors.black54,
+      leading: ValueListenableBuilder<bool>(
+        valueListenable: product.isFavoriteListenable,
+        builder: (ctx, isFavorite, child) {
+          return IconButton(
+            icon: Icon(
+              isFavorite ? Icons.favorite : Icons.favorite_border,
+              size: 20,
+            ),
+            color: Theme.of(context).colorScheme.secondary,
+            onPressed: () {
+              product.isFavorite = !isFavorite;
+            },
+          );
+        },
+      ),
+      title: Text(
+        '$price',
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          color: Colors.white,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ),
+      subtitle: Text(
+        product.description,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 10,
+        ),
       ),
     );
   }
