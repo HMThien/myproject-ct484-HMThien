@@ -17,3 +17,4 @@ export '../ui/products/add_product_screen.dart';
 export '../ui/products/contact_screen.dart';
 
 export '../ui/products/notifications_screen.dart';
+export '../ui/products/notifications_detail_screen.dart';

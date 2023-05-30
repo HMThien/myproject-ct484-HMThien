@@ -5,8 +5,8 @@ import '../../models/product.dart';
 class NotificationsDetailScreen extends StatelessWidget {
   const NotificationsDetailScreen({super.key});
 
-  /* static const routeName = '/notification-detail';
-
+  static const routeName = '/notification-detail';
+/*
   const NotificationsDetailScreen(
     this.product, {
     super.key,
@@ -66,5 +66,11 @@ class NotificationsDetailScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

@@ -1,6 +1,4 @@
-// ignore_for_file: unused_local_variable
-
-import 'dart:js';
+import 'dart:js' show context;
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -10,10 +8,6 @@ import 'notifications_detail_screen.dart';
 
 class NotificationsScreen extends StatelessWidget {
   const NotificationsScreen({super.key});
-
-  BuildContext get context {
-    throw UnimplementedError();
-  }
 
   /*static const routeName = '/notifications';
 
@@ -46,8 +40,8 @@ class NotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: no_leading_underscores_for_local_identifiers
-    final _items = Item.loadItems(20);
+    //final Future<List<Item>> itemsFuture = Item.loadItems(20);
+    final List<Item> items = Item.notification;
     return Scaffold(
       appBar: AppBar(
           title: const Text('Thông báo'),
@@ -65,66 +59,65 @@ class NotificationsScreen extends StatelessWidget {
             ),
           )),
       body: ListView.builder(
-          itemCount: _items.length,
+          itemCount: items.length,
           itemBuilder: (context, index) {
-            final item = _items[index];
-            return ListTile(
-              leading: const Icon(Icons.message_rounded),
-              title: const Text('Thông báo update tài khoản'),
-              // ignore: unnecessary_const
-              // trailing: ,
-              //IconButton(icon: const Icons.more_horiz)
-              trailing: SizedBox(
-                width: 100,
-                child: Row(
-                  children: [
-                    buttonDetailNotification(),
-                  ],
+            final item = items[index];
+            return Card(
+              // elevation: 5.0,
+              child: ListTile(
+                leading: const Icon(Icons.message_rounded),
+                title: Text(item.title_noti),
+                subtitle: Text(item.header_noti),
+                trailing: SizedBox(
+                  width: 100,
+                  child: Row(
+                    children: [
+                      Container(
+                        child: buttonDetailNotification(),
+                      )
+                    ],
+                  ),
                 ),
               ),
             );
           }),
     );
   }
-
-  Widget buttonDetailNotification() {
-    return IconButton.outlined(
-      icon: const Icon(Icons.more_horiz),
-      onPressed: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const NotificationsDetailScreen();
-        }));
-      },
-    );
-  }
 }
 
-/*class Product {
-  final String des;
-  Product({required this.des});
+Widget buttonDetailNotification() {
+  return IconButton.outlined(
+      icon: const Icon(Icons.more_horiz),
+      onPressed: () {
+        Navigator.of(context as BuildContext);
+        const NotificationsDetailScreen();
+      });
 
-  Product copyWith({
-    String? des,
-  }) {
-    return Product(
-      des: des ?? this.des,
-    );
-  }
-}*/
+  /*Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return const NotificationsDetailScreen();
+        }));*/
+}
 
 class Item {
-  final String des;
+  final String title_noti;
+  final String header_noti;
+  final String full_noti;
 
-  Item(this.des);
-  static List<Item> loadItems(int itemCount) {
-    return List.generate(itemCount, (index) {
-      return Item('Thông báo $index');
-    });
-  }
-
-  /* List<Product> _items = [
-    Product(
-      des: 'fgdf a jholh oh oh oh oih oh ois ',
-    ),
-  ];*/
+  const Item(
+    this.title_noti,
+    this.header_noti,
+    this.full_noti,
+  );
+  static List<Item> notification = [
+    const Item('Thông báo tài khoản', 'Bạn vừa đăng nhập vào thiết bị khác...',
+        'Bạn vừa đăng nhập vào thiết bị khác là trình duyệt desktop có vị trí tại Hồ Chí Minh City. Nếu là bạn vui lòng bỏ qua thông báo này'),
+    const Item('Thông báo đơn hòng', 'Cảm ơn bạn vừa đặt hàng thành công, ...',
+        'Cảm ơn bạn vừa đặt hàng thành công, mã đơn hàng của bạn là HGUQWY250472. Chúng tôi sẽ sớm gọi xác nhận, bạn vui lòng giữ liên lạc trong 24h'),
+    const Item('Thông báo tài khoản', 'Bạn vừa đăng nhập vào thiết bị khác...',
+        'Bạn vừa đăng nhập vào thiết bị khác là trình duyệt desktop có vị trí tại Hồ Chí Minh City. Nếu là bạn vui lòng bỏ qua thông báo này'),
+    const Item('Thông báo tài khoản', 'Bạn vừa đăng nhập vào thiết bị khác...',
+        'Bạn vừa đăng nhập vào thiết bị khác là trình duyệt desktop có vị trí tại Hồ Chí Minh City. Nếu là bạn vui lòng bỏ qua thông báo này'),
+    const Item('Thông báo tài khoản', 'Bạn vừa đăng nhập vào thiết bị khác...',
+        'Bạn vừa đăng nhập vào thiết bị khác là trình duyệt desktop có vị trí tại Hồ Chí Minh City. Nếu là bạn vui lòng bỏ qua thông báo này'),
+  ];
 }

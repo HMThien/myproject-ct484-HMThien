@@ -77,11 +77,12 @@ class _AuthCardState extends State<AuthCard> {
     final deviceSize = MediaQuery.of(context).size;
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(5.0),
       ),
       elevation: 8.0,
       child: Container(
         height: _authMode == AuthMode.signup ? 320 : 260,
+        color: Colors.lightGreen.shade50,
         constraints:
             BoxConstraints(minHeight: _authMode == AuthMode.signup ? 320 : 260),
         width: deviceSize.width * 0.75,

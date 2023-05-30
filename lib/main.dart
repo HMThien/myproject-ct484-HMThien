@@ -18,6 +18,8 @@ import 'ui/products/notifications_screen.dart';
 
 // thiendt20v7x081@dttx.ctu.edu.vn
 // 111111
+// https://github.com/HMThien/myproject-ct484-HMThien.git
+// https://project-laptop-hmt-default-rtdb.asia-southeast1.firebasedatabase.app/
 
 Future<void> main() async {
   await dotenv.load();

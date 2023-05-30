@@ -38,7 +38,7 @@ class ProductGridTile extends StatelessWidget {
 
   Widget buildGridFooterBar(BuildContext context) {
     return GridTileBar(
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.black54,
       leading: ValueListenableBuilder<bool>(
         valueListenable: product.isFavoriteListenable,
         builder: (ctx, isFavorite, child) {
@@ -56,6 +56,9 @@ class ProductGridTile extends StatelessWidget {
       title: Text(
         product.title,
         textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.amber,
+        ),
       ),
       trailing: IconButton(
         icon: const Icon(
@@ -71,7 +74,7 @@ class ProductGridTile extends StatelessWidget {
                 content: const Text(
                   'San phẩm bạn chọn đã thêm vào giỏ hàng',
                 ),
-                duration: const Duration(seconds: 5),
+                duration: const Duration(seconds: 6),
                 action: SnackBarAction(
                   label: 'Hủy vừa chọn',
                   onPressed: () {
